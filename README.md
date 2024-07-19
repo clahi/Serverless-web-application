@@ -9,3 +9,9 @@ Used AWS Aplify to host the static resources for our web page application with c
 
 ## AWS Cognito
 Created an Amazon Cognito user pool to manage our users' accounts. The static web has a page that enables customers to register as a new user, verify thier email address, and sign into the site.
+
+## Serverless Backend
+Created a Lambda function and Amazon DynamoDB to build a backend process for handling requests for the web applicaiton.
+
+## Amazon API Gateway
+Exposed the Lambda function we have created as a RESTful API. This API will be accessible on the public internet and will be secured using the Amazon Cognito user pool. This will turn the statically hosted website into a dynamic web application by adding client-side JavaScript that makes AJAX calls to the exposed APIs.
