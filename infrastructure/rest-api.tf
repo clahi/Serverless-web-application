@@ -16,6 +16,7 @@ resource "aws_api_gateway_resource" "ride" {
   rest_api_id = aws_api_gateway_rest_api.WildRydes.id
   parent_id   = aws_api_gateway_rest_api.WildRydes.root_resource_id
   path_part   = "ride"
+
 }
 
 # Create a method for the ride resource within the api
