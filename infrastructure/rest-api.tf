@@ -1,15 +1,26 @@
+data "aws_cognito_user_pools" "this" {
+  name = aws_cognito_user_pool.WildRydes.name
+}
+
+resource "aws_api_gateway_authorizer" "WildRydes" {
+  name          = "WildRydes"
+  type          = "COGNITO_USER_POOLS"
+  rest_api_id   = aws_api_gateway_rest_api.WildRydes.id
+  provider_arns = data.aws_cognito_user_pools.this.arns
+}
+
 # Create a restful api to publish the lambda function.
 resource "aws_api_gateway_rest_api" "WildRydes" {
   name = "WildRydes"
 }
 
-# Create an Authorizer for the API, so we can use of the cognito user pool.
-resource "aws_api_gateway_authorizer" "WildRydes" {
-  name          = "WildRydes"
-  type          = "COGNITO_USER_POOLS"
-  rest_api_id   = aws_api_gateway_rest_api.WildRydes.id
-  provider_arns = [aws_cognito_user_pool.WildRydes.arn]
-}
+# # Create an Authorizer for the API, so we can use of the cognito user pool.
+# resource "aws_api_gateway_authorizer" "WildRydes" {
+#   name          = "WildRydes"
+#   type          = "COGNITO_USER_POOLS"
+#   rest_api_id   = aws_api_gateway_rest_api.WildRydes.id
+#   provider_arns = [aws_cognito_user_pool.WildRydes.arn]
+# }
 
 # Create a new resource within the api.
 resource "aws_api_gateway_resource" "ride" {
