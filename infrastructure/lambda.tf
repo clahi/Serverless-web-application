@@ -56,3 +56,11 @@ resource "aws_lambda_function" "RequestUnicorn" {
   runtime          = "nodejs16.x"
   handler          = "lambda.handler"
 }
+
+resource "aws_lambda_permission" "autoSpeechRecogPermission" {
+  statement_id  = "AllowExecutionFromS3Bucket"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.RequestUnicorn.function_name
+  principal     = "apigateway.amazonaws.com"
+  source_arn    = aws_api_gateway_rest_api.WildRydes.arn
+}
