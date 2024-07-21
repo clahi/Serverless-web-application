@@ -166,9 +166,9 @@ resource "aws_api_gateway_authorizer" "WildRydes" {
 resource "aws_api_gateway_rest_api" "WildRydes" {
   name = "WildRydes"
 
-  #   endpoint_configuration {
-  #     types = ["Edge optimized"]
-  #   }
+    # endpoint_configuration {
+    #   types = ["EDGE"]
+    # }
 }
 
 resource "aws_api_gateway_resource" "ride" {
