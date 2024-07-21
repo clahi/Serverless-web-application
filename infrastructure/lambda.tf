@@ -62,5 +62,5 @@ resource "aws_lambda_permission" "autoSpeechRecogPermission" {
   action        = "lambda:InvokeFunction"
   function_name = aws_lambda_function.RequestUnicorn.function_name
   principal     = "apigateway.amazonaws.com"
-  source_arn    = aws_api_gateway_rest_api.WildRydes.arn
+  source_arn    = "${aws_api_gateway_rest_api.WildRydes.execution_arn}/*"
 }
